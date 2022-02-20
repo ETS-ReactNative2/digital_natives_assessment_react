@@ -9,20 +9,70 @@ function App() {
   const [ input, setInput ] = useState("");
   const [ output, setOutput ] = useState("");
 
+  //INPUT
   const handleInputChange = (e) => {
     e.preventDefault();
     setInput(e.target.value)
   }
 
-  const printOutput = (e) => {
-    e.preventDefault();
-    setOutput(input)
+  //basics
+    let inputLength = input.length;
+    let inputSplit = input.split("");
+
+  //Create TENNERS
+  let singular = inputSplit.slice(inputLength -1);
+  let doublefigures = inputSplit.slice(inputLength -2, -1);
+  let doubles =  doublefigures + singular;
+
+  let twoFigures = function(n) {
+    let arr = n.length === 2 ? n.split("") : n;
+    let tenner = arr[0] > 0 ? tens[arr[0]] : "";
+    let single = arr[1] > 0 ? numbers[arr[1]] : "";
+    let hasDoubleFigures = arr[0] > 0 && arr[1] > 0 ? "-" : "";
+
+    if(n > 19) {
+        return tenner + hasDoubleFigures + single;
+    } else return numbers[Math.round(n *1)];
   }
 
-  //1-19
-    let result = input.slice("")
+  //Create HUNDREDS
+  let hundreds = inputSplit.slice(inputLength -3, -2);
+  let threeFigures = function(n) {
+    if(n > 0) { return numbers[n] + " hundred " 
+    } else return ""
+  } 
 
-  console.log(result);
+  //Create THOUSANDS
+  let thousands = inputLength < 5 ? inputSplit.slice(inputLength -4, -3).join("") : inputSplit.slice(inputLength -5, -3).join("");
+  console.log(thousands);
+  let fourFigures = function(n) {
+    if(n > 0) { return twoFigures(n) + " thousand " 
+    } else return ""
+  } 
+  //Houndred Thousands...
+  let hundredThousands = inputSplit.slice(inputLength -6 , -5);
+  console.log(hundredThousands);
+
+
+  //And(s)?
+  let earlyGame = doublefigures > 0 && inputLength > 3 ? "and " : "";
+  let lessEarlyGame = inputLength > 5 ? "and " : "";
+    
+  //RESULT
+    let result = 
+      threeFigures(hundredThousands) + 
+      lessEarlyGame +
+      fourFigures(thousands) + 
+      threeFigures(hundreds) + 
+      earlyGame + 
+      twoFigures(doubles);
+
+  
+  //OUTPUT
+  const printOutput = (e) => {
+    e.preventDefault();
+    setOutput(result)
+  }
 
   return (
     <div className="App">
