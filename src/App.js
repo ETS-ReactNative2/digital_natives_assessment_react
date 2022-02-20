@@ -14,7 +14,7 @@ function App() {
     e.preventDefault();
     setInput(e.target.value)
   }
-
+console.log(input);
   //basics
     let inputLength = input.length;
     let inputSplit = input.split("");
@@ -53,7 +53,6 @@ function App() {
 
   //Millions :)
   let millions = inputSplit.slice(inputLength -7 && -8, -6).join("");
-  console.log(millions);
   let thoseMillions = function(n) {
     if(n > 0) { return twoFigures(n) + " million " 
     } else return ""
@@ -64,7 +63,9 @@ function App() {
   let lessEarlyGame = inputLength > 5 ? "and " : "";
     
   //RESULT
-    let result = 
+  let result = ""
+  if(input > 0 && inputLength < 9) {
+    result = 
       thoseMillions(millions) +
       threeFigures(hundredThousands) + 
       lessEarlyGame +
@@ -72,7 +73,11 @@ function App() {
       threeFigures(hundreds) + 
       earlyGame + 
       twoFigures(doubles);
-
+  } else if (input === "0") {
+    result = "zero"
+  } else if (input.length > 8) {
+    result = "not possible"
+  }
   
   //OUTPUT
   const printOutput = (e) => {
@@ -82,10 +87,16 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className='header-title'>Numbers in words</h1>
       <form>
-        <input type="text" onChange={handleInputChange} />
-        <button className={"submit"} onClick={printOutput} >SUBMIT</button>
-        <h2 className={"output"}>{output}</h2>
+        <div className='input-field'>
+          <input type="text" onChange={handleInputChange} onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key) && !/[Enter]/.test(event.key)) {
+            event.preventDefault();
+          }}}/>
+          <button className="submit" onClick={printOutput} >Submit</button>
+        </div>
+        <h2 className="output">{output}</h2>
     </form>
     </div>
   );
