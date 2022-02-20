@@ -44,15 +44,20 @@ function App() {
 
   //Create THOUSANDS
   let thousands = inputLength < 5 ? inputSplit.slice(inputLength -4, -3).join("") : inputSplit.slice(inputLength -5, -3).join("");
-  console.log(thousands);
   let fourFigures = function(n) {
     if(n > 0) { return twoFigures(n) + " thousand " 
     } else return ""
   } 
   //Houndred Thousands...
   let hundredThousands = inputSplit.slice(inputLength -6 , -5);
-  console.log(hundredThousands);
 
+  //Millions :)
+  let millions = inputSplit.slice(inputLength -7 && -8, -6).join("");
+  console.log(millions);
+  let thoseMillions = function(n) {
+    if(n > 0) { return twoFigures(n) + " million " 
+    } else return ""
+  } 
 
   //And(s)?
   let earlyGame = doublefigures > 0 && inputLength > 3 ? "and " : "";
@@ -60,6 +65,7 @@ function App() {
     
   //RESULT
     let result = 
+      thoseMillions(millions) +
       threeFigures(hundredThousands) + 
       lessEarlyGame +
       fourFigures(thousands) + 
