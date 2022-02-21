@@ -13,10 +13,31 @@
   border-radius: 0px;
   box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px,
     rgba(255, 255, 255, 0.3) 0px 30px 60px -30px;
+
+  position: relative;
 }
 .header-title {
   text-transform: uppercase;
-  padding: 15px;
+  margin: 15px;
+  position: relative;
+}
+.header-title::after {
+  position: absolute;
+  content: "";
+  bottom: -15px;
+  left: 0;
+  background-color: rgb(254, 233, 255);
+  height: 2px;
+  min-width: 200px;
+  width: 60%;
+}
+.icon {
+  position: absolute;
+  right: 9%;
+  top: 4%;
+
+  width: 80px;
+  height: auto;
 }
 form {
   display: flex;
@@ -56,11 +77,16 @@ button {
   letter-spacing: 5px;
   font-size: 20px;
   text-transform: uppercase;
+
+  border-bottom: 4px solid pink;
+  border-right: 4px solid rgb(255, 171, 185);
+
+  cursor: pointer;
 }
 .output {
   flex-grow: 1;
   width: calc(50% - 30px);
-  min-height: 135px;
+  min-height: 140px;
   padding: 10px;
   margin: 15px;
   color: black;

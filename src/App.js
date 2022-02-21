@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import engine from './Engine';
+import icon from './img/papir.png'
 
 function App() {
   const [ input, setInput ] = useState("");
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <h1 className='header-title'>Numbers in words</h1>
+      <img src={icon} alt='' className="icon" />
       <form>
         <div className='input-field'>
           <input type="text" onChange={handleInputChange} onKeyPress={(event) => {
