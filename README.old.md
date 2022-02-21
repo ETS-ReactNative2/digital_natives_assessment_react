@@ -1,1 +1,0 @@
-# digital_natives_assessment_react
