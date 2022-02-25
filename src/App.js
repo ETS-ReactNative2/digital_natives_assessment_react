@@ -19,7 +19,6 @@ function App() {
     setOutput(engine(input))
   }
 
-
   return (
     <div className="App">
       <h1 className='header-title'>Numbers in words</h1>
