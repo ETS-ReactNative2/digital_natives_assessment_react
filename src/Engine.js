@@ -8,10 +8,6 @@ function engine(n) {
     
     let input = String(n)
     let inputSplit = input.split("");
-
-    let valami = Number(input)
-    console.log(valami);
-
     
   //RESULT
     let result = ""
@@ -20,9 +16,8 @@ function engine(n) {
         let reversedMapedInput = mapedInput.reverse().join("");
         let devidedEachThird = reversedMapedInput.match(/.{1,3}/g);
 
-        let threeFigures = (n) => {
+        function threeFigures(n) {
           let arr = String(n).split("").reverse();
-          console.log(arr);
           
           let ones = arr.slice(-1);
           let tens = arr.slice(-2, -1);
@@ -31,25 +26,18 @@ function engine(n) {
           let isTenner = [tens, ones];
           
           //AND
-          let and = Number(input) > 99 && isTenner.join("") > 0 && arr.length === 3 ? "and " : "";
+          let and = isTenner.join("") > 0 && arr.length === 3 ? "and " : "";
           
           let hunner = huns > 0 ? numbers[huns] + ' hundred ' : "";
           let twinner = ones > 0 && tens > 0 ? tenners[tens] + '-' : tenners[tens];
           let single = ones === 0 ? '' : numbers[ones];
 
-          console.log(huns);
-
           if(isTenner.join("") < 20) {
                 twinner = "";
                 single = numbers[Math.round(isTenner.join("") *1)];
               } 
-          
           return hunner + and + twinner + single
-
           }
-
-          console.log(devidedEachThird);
-
 
         //From 100 to the sky
         if(n < 1000) {
